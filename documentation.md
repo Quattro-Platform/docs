@@ -1,0 +1,21 @@
+- ## Prologue
+    - [General information](/docs/{{version}}/general-information)
+    - [Release Notes](/docs/{{version}}/releases)
+    - [Upgrade Guide](/docs/{{version}}/upgrade)
+- ## Getting Started
+    - [Quick start](/docs/{{version}}/quick-start)
+    - [Authentication](/docs/{{version}}/authentication)
+    - [Authorization](/docs/{{version}}/authorization)
+    - [Response structure](/docs/{{version}}/structure)
+
+- ## Data structure
+    - [Access token](/docs/{{version}}/access-token)
+    - [Agent](/docs/{{version}}/agent)
+    - [Customer](/docs/{{version}}/customer)
+    - [Driver](/docs/{{version}}/driver)
+    - [Order](/docs/{{version}}/order)
+    - [Product](/docs/{{version}}/product)
+    - [Purchase](/docs/{{version}}/purchase)
+    - [Shipment](/docs/{{version}}/shipment)
+    - [User](/docs/{{version}}/user)
+    - [Warehouse](/docs/{{version}}/shipment)
