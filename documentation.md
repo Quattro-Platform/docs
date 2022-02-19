@@ -18,4 +18,4 @@
     - [Purchase](/docs/{{version}}/purchase)
     - [Shipment](/docs/{{version}}/shipment)
     - [User](/docs/{{version}}/user)
-    - [Warehouse](/docs/{{version}}/shipment)
+    - [Warehouse](/docs/{{version}}/warehouse)
