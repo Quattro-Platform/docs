@@ -1,7 +1,6 @@
 - ## Prologue
     - [General information](/docs/{{version}}/general-information)
-    - [Release Notes](/docs/{{version}}/releases)
-    - [Upgrade Guide](/docs/{{version}}/upgrade)
+    - [Breaking changes](/docs/{{version}}/breaking-changes)
 - ## Getting Started
     - [Quick start](/docs/{{version}}/quick-start)
     - [Authentication](/docs/{{version}}/authentication)
