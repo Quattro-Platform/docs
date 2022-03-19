@@ -1,9 +1,10 @@
 # Access Token
 
-# First party applications
-If your application is part of the first party apps that serve QuattroApp, then the authentication flow is simple.
-Just send a request to /oauth/token with username and password paramenters, remember to include the secret token in every request your app send to our APIs.
+### Basic structure
+Our access token is a `100 chars long string`, unique per device and per user. When requesting a new access token, your app can pass an additional parameter `name` in order to let the user easily identify his tokens.
 
-# Third party applications
-In this case you'll need to obtain an auth code from our internal authentication system. Just open the browser to the oauth/authorize endpoint and intercept the redirect response to optain the auth code, then you can excange the user auth code with a fresh access token.
+### Token lifetime
+The access token is short-lived, it means that after the expiration date the token will stop working and your application will need to request a new token via a refresh token request.
 
+### Scopes
+At the moment token scopes are not supported as third-party authentication is not enabled. In future versions you 'll be able to retrieve tokens limited to specific scopes.
