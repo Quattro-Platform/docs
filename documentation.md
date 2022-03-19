@@ -13,6 +13,7 @@
     - [Customer](/docs/{{version}}/customer)
     - [Driver](/docs/{{version}}/driver)
     - [Order](/docs/{{version}}/order)
+    - [Price book](/docs/{{version}}/price-book)
     - [Product](/docs/{{version}}/product)
     - [Purchase](/docs/{{version}}/purchase)
     - [Shipment](/docs/{{version}}/shipment)
