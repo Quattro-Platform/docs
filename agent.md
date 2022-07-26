@@ -18,3 +18,5 @@ Field|Relation|Model|Items
 `price_book_id`|priceBook|[`PriceBook`](price-book)|One
 _ |products|[`Product`](product)|Many
 _ |customers|[`Customer`](customer)|Many
+_ |orders|[`Order`](order)|Many
+_ |users|[`Users`](user)|Many
