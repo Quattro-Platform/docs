@@ -1,0 +1,6047 @@
+openapi: 3.0.3
+info:
+  title: 'API documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: ''
+paths:
+  /api/v5/agents:
+    get:
+      summary: 'Get a list of agents'
+      operationId: getAListOfAgents
+      description: ''
+      parameters:
+        -
+          in: query
+          name: relations
+          description: "List of Agent's relations to include."
+          example: 'priceBook,products'
+          required: true
+          schema:
+            type: array
+            description: "List of Agent's relations to include."
+            example: 'priceBook,products'
+            items:
+              type: string
+        -
+          in: query
+          name: sort
+          description: 'Comma separated list of fields to sort by.'
+          example: 'name,-id'
+          required: true
+          schema:
+            type: string
+            description: 'Comma separated list of fields to sort by.'
+            example: 'name,-id'
+        -
+          in: query
+          name: 'filter[<field>]'
+          description: 'Filter by field.'
+          example: 'filter[name]=John'
+          required: true
+          schema:
+            type: string
+            description: 'Filter by field.'
+            example: 'filter[name]=John'
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      name: 'Guendalina Lombardo'
+                      email: brinaldi@example.net
+                      price_book_id: 208
+                      updated_at: '2023-04-16T11:07:14.000000Z'
+                      created_at: '2023-04-16T11:07:14.000000Z'
+                      id: 214
+                    -
+                      name: 'Cosetta Grasso'
+                      email: edilio.romano@example.net
+                      price_book_id: 209
+                      updated_at: '2023-04-16T11:07:14.000000Z'
+                      created_at: '2023-04-16T11:07:14.000000Z'
+                      id: 215
+                  links:
+                    first: '/?page=1'
+                    last: '/?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: '/?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: /
+                    per_page: 5
+                    to: 2
+                    total: 2
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        name: 'Guendalina Lombardo'
+                        email: brinaldi@example.net
+                        price_book_id: 208
+                        updated_at: '2023-04-16T11:07:14.000000Z'
+                        created_at: '2023-04-16T11:07:14.000000Z'
+                        id: 214
+                      -
+                        name: 'Cosetta Grasso'
+                        email: edilio.romano@example.net
+                        price_book_id: 209
+                        updated_at: '2023-04-16T11:07:14.000000Z'
+                        created_at: '2023-04-16T11:07:14.000000Z'
+                        id: 215
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: 'Guendalina Lombardo'
+                        email:
+                          type: string
+                          example: brinaldi@example.net
+                        price_book_id:
+                          type: integer
+                          example: 208
+                        updated_at:
+                          type: string
+                          example: '2023-04-16T11:07:14.000000Z'
+                        created_at:
+                          type: string
+                          example: '2023-04-16T11:07:14.000000Z'
+                        id:
+                          type: integer
+                          example: 214
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: '/?page=1'
+                      last:
+                        type: string
+                        example: '/?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: '/?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: /
+                      per_page:
+                        type: integer
+                        example: 5
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 2
+      tags:
+        - Agents
+    post:
+      summary: 'Create a new agent.'
+      operationId: createANewAgent
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 12
+                properties:
+                  id:
+                    type: integer
+                    example: 12
+      tags:
+        - Agents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: ''
+                  example: null
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters.'
+                  example: qpbemdodjfyffwjrxvcjikbsb
+                price_book_id:
+                  type: string
+                  description: ''
+                  example: pariatur
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must be at least 5 characters.'
+                  example: monahan.kristopher@example.org
+              required:
+                - name
+                - price_book_id
+  '/api/v5/agents/{id}':
+    get:
+      summary: 'Get an agent by id.'
+      operationId: getAnAgentById
+      description: ''
+      parameters:
+        -
+          in: query
+          name: relations
+          description: "List of Agent's relations to include."
+          example: 'priceBook,products'
+          required: true
+          schema:
+            type: array
+            description: "List of Agent's relations to include."
+            example: 'priceBook,products'
+            items:
+              type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  name: 'Priamo Basile'
+                  email: serra.luna@example.com
+                  price_book_id: 210
+                  updated_at: '2023-04-16T11:07:14.000000Z'
+                  created_at: '2023-04-16T11:07:14.000000Z'
+                  id: 216
+                properties:
+                  name:
+                    type: string
+                    example: 'Priamo Basile'
+                  email:
+                    type: string
+                    example: serra.luna@example.com
+                  price_book_id:
+                    type: integer
+                    example: 210
+                  updated_at:
+                    type: string
+                    example: '2023-04-16T11:07:14.000000Z'
+                  created_at:
+                    type: string
+                    example: '2023-04-16T11:07:14.000000Z'
+                  id:
+                    type: integer
+                    example: 216
+      tags:
+        - Agents
+    put:
+      summary: 'Update an agent.'
+      operationId: updateAnAgent
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Agents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters.'
+                  example: frrmnmunayjqabmflfcuddbvjmlrsohvskavdjkrnrqmbsjwjcqvmnxneablpnizjs
+                price_book_id:
+                  type: string
+                  description: ''
+                  example: voluptas
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must be at least 5 characters.'
+                  example: howell.quitzon@example.org
+              required:
+                - name
+                - price_book_id
+    delete:
+      summary: 'Delete an agent.'
+      operationId: deleteAnAgent
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Agents
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the agent.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/orders/states/import:
+    post:
+      summary: ''
+      operationId: postApiV5OrdersStatesImport
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Order States'
+  /api/v5/orders/states:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Order States'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Order States'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 20 characters.'
+                  example: ku
+                color:
+                  type: string
+                  description: ''
+                  example: doloribus
+                textColor:
+                  type: string
+                  description: ''
+                  example: id
+                isDefault:
+                  type: boolean
+                  description: ''
+                  example: false
+              required:
+                - name
+                - color
+                - textColor
+  '/api/v5/orders/states/{orderState_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Order States'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Order States'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 20 characters.'
+                  example: cxmrqpvzruxeqgnh
+                isDefault:
+                  type: boolean
+                  description: ''
+                  example: false
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Order States'
+    parameters:
+      -
+        in: path
+        name: orderState_id
+        description: 'The ID of the orderState.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/orders/lines:
+    get:
+      summary: 'Get order lines for an order'
+      operationId: getOrderLinesForAnOrder
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Orders'
+  '/api/v5/orders/{order_id}/review':
+    post:
+      summary: 'Review an order'
+      operationId: reviewAnOrder
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Orders'
+    parameters:
+      -
+        in: path
+        name: order_id
+        description: 'The ID of the order.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/orders:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Orders'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Orders'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                geordc:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 20 characters.'
+                  example: anrsupncluoocfa
+                orderDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                deliveryDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                note:
+                  type: string
+                  description: ''
+                  example: null
+                customer_id:
+                  type: string
+                  description: ''
+                  example: qui
+                destination_id:
+                  type: string
+                  description: ''
+                  example: eligendi
+                agent_id:
+                  type: string
+                  description: ''
+                  example: null
+                order_state_id:
+                  type: string
+                  description: ''
+                  example: null
+                order_lines:
+                  type: array
+                  description: 'This field is required when <code>orderLines</code> is not present.'
+                  example:
+                    - laborum
+                  items:
+                    type: string
+                orderLines:
+                  type: array
+                  description: 'This field is required when <code>order_lines</code> is not present.'
+                  example:
+                    - maiores
+                  items:
+                    type: string
+              required:
+                - orderDate
+                - deliveryDate
+                - customer_id
+                - destination_id
+  '/api/v5/orders/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Orders'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Orders'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                geordc:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 20 characters.'
+                  example: rilmmfymyglnqzppxu
+                orderDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                deliveryDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                note:
+                  type: string
+                  description: ''
+                  example: null
+                customer_id:
+                  type: string
+                  description: ''
+                  example: null
+                agent_id:
+                  type: string
+                  description: ''
+                  example: null
+                order_state_id:
+                  type: string
+                  description: ''
+                  example: null
+                orderLines:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      product_id:
+                        type: string
+                        description: ''
+                        example: officia
+                      qta:
+                        type: string
+                        description: ''
+                        example: quae
+                      unitPrice:
+                        type: string
+                        description: ''
+                        example: ipsam
+                      discount:
+                        type: string
+                        description: ''
+                        example: praesentium
+                    required:
+                      - product_id
+                      - qta
+                      - unitPrice
+                      - discount
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Orders'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the order.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/customers/production-chains:
+    get:
+      summary: 'Get all customer production chains'
+      operationId: getAllCustomerProductionChains
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Production Chains'
+    post:
+      summary: 'Create a new customer production chain'
+      operationId: createANewCustomerProductionChain
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Production Chains'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters.'
+                  example: ldmarusfubwgwyupptansikrgxcgmbutennzdqtowojmhegpit
+                description:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - name
+  '/api/v5/customers/production-chains/{productionChain_id}':
+    get:
+      summary: 'Get a customer production chain'
+      operationId: getACustomerProductionChain
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Production Chains'
+    put:
+      summary: 'Update a customer production chain'
+      operationId: updateACustomerProductionChain
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Production Chains'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters.'
+                  example: qoflrqmumzuj
+                description:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - name
+    delete:
+      summary: 'Delete a customer production chain'
+      operationId: deleteACustomerProductionChain
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Customer Production Chains'
+    parameters:
+      -
+        in: path
+        name: productionChain_id
+        description: 'The ID of the productionChain.'
+        example: 10
+        required: true
+        schema:
+          type: integer
+  /api/v5/customers:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Customers
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerCode:
+                  type: integer
+                  description: ''
+                  example: 4
+                name:
+                  type: string
+                  description: ''
+                  example: totam
+                VAT:
+                  type: string
+                  description: 'Must be at least 11 characters. Must not be greater than 11 characters.'
+                  example: pnydfve
+                address:
+                  type: string
+                  description: ''
+                  example: rerum
+                city:
+                  type: string
+                  description: ''
+                  example: veniam
+                province:
+                  type: string
+                  description: 'Must not be greater than 2 characters.'
+                  example: kc
+                postalCode:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 5 characters.'
+                  example: xgaea
+                canBuy:
+                  type: string
+                  description: ''
+                  example: null
+                isConfirmed:
+                  type: string
+                  description: ''
+                  example: null
+                agent_id:
+                  type: string
+                  description: ''
+                  example: null
+                driver_id:
+                  type: string
+                  description: ''
+                  example: null
+                contacts:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: ''
+                        example: ut
+                      value:
+                        type: string
+                        description: ''
+                        example: eligendi
+                      type:
+                        type: string
+                        description: ''
+                        example: commodi
+                    required:
+                      - name
+                      - value
+                      - type
+                destinations:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: ''
+                        example: aperiam
+                      address:
+                        type: string
+                        description: ''
+                        example: vitae
+                      city:
+                        type: string
+                        description: ''
+                        example: nostrum
+                      province:
+                        type: string
+                        description: 'Must be at least 2 characters. Must not be greater than 2 characters.'
+                        example: eg
+                      postalCode:
+                        type: string
+                        description: 'Must be at least 5 characters. Must not be greater than 5 characters.'
+                        example: yiudk
+                      isActive:
+                        type: string
+                        description: ''
+                        example: ea
+                    required:
+                      - name
+                      - address
+                      - city
+                      - province
+                      - postalCode
+                      - isActive
+              required:
+                - name
+                - address
+                - city
+                - province
+                - postalCode
+  '/api/v5/customers/{customer_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Customers
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Customers
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerCode:
+                  type: integer
+                  description: ''
+                  example: 2
+                VAT:
+                  type: string
+                  description: 'Must be at least 11 characters. Must not be greater than 11 characters.'
+                  example: qdbrcbkfpet
+                driver_id:
+                  type: string
+                  description: ''
+                  example: null
+                lat:
+                  type: number
+                  description: ''
+                  example: 23735708.856318
+                lng:
+                  type: number
+                  description: ''
+                  example: 0.34263819
+                contacts:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: ''
+                        example: temporibus
+                      value:
+                        type: string
+                        description: ''
+                        example: et
+                      type:
+                        type: string
+                        description: ''
+                        example: iusto
+                    required:
+                      - name
+                      - value
+                      - type
+                destinations:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: ''
+                        example: eius
+                      address:
+                        type: string
+                        description: ''
+                        example: aperiam
+                      city:
+                        type: string
+                        description: ''
+                        example: deleniti
+                      province:
+                        type: string
+                        description: 'Must be at least 2 characters. Must not be greater than 2 characters.'
+                        example: w
+                      postalCode:
+                        type: string
+                        description: 'Must be at least 5 characters. Must not be greater than 5 characters.'
+                        example: e
+                      isActive:
+                        type: string
+                        description: ''
+                        example: et
+                      lat:
+                        type: number
+                        description: ''
+                        example: 48106.626
+                      lng:
+                        type: number
+                        description: ''
+                        example: 1.273317
+                    required:
+                      - name
+                      - address
+                      - city
+                      - province
+                      - postalCode
+                      - isActive
+                daily_consumptions:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      product_id:
+                        type: string
+                        description: ''
+                        example: ipsa
+                    required:
+                      - product_id
+                invoices:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      number:
+                        type: string
+                        description: ''
+                        example: est
+                      issueDate:
+                        type: string
+                        description: 'Must be a valid date.'
+                        example: '2023-04-16T13:07:12'
+                      deadlineDate:
+                        type: string
+                        description: 'Must be a valid date.'
+                        example: '2023-04-16T13:07:12'
+                      totalAmount:
+                        type: number
+                        description: ''
+                        example: 67.51466
+                      isPaid:
+                        type: boolean
+                        description: ''
+                        example: true
+                    required:
+                      - number
+                      - issueDate
+                      - deadlineDate
+                      - totalAmount
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Customers
+    parameters:
+      -
+        in: path
+        name: customer_id
+        description: 'The ID of the customer.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/customers/{customer_id}/geocode':
+    post:
+      summary: 'Geocode a customer'
+      operationId: geocodeACustomer
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Customers
+    parameters:
+      -
+        in: path
+        name: customer_id
+        description: 'The ID of the customer.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/customers/{customer_id}/destinations':
+    get:
+      summary: 'Get the destinations of a customer'
+      operationId: getTheDestinationsOfACustomer
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Customers
+    parameters:
+      -
+        in: path
+        name: customer_id
+        description: 'The ID of the customer.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/documents/delivery-notes:
+    get:
+      summary: 'Display a listing of the resource'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Delivery Notes'
+    post:
+      summary: 'Store a newly created resource in storage'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Delivery Notes'
+  '/api/v5/documents/delivery-notes/{deliveryNote_id}':
+    get:
+      summary: 'Display the specified resource'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Delivery Notes'
+    put:
+      summary: 'Update the specified resource in storage'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Delivery Notes'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                document_date:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-04-16T13:07:10'
+                document_heading:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    customer:
+                      type: string
+                      description: ''
+                      example: quia
+                    destination:
+                      type: string
+                      description: ''
+                      example: veniam
+                    delivery_reason:
+                      type: string
+                      description: ''
+                      example: reprehenderit
+                document_footer:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    driver:
+                      type: string
+                      description: ''
+                      example: consequatur
+                    delivery_date:
+                      type: string
+                      description: ''
+                      example: placeat
+                    payment_method:
+                      type: string
+                      description: ''
+                      example: et
+                    transport_payer:
+                      type: string
+                      description: ''
+                      example: ullam
+                    production_notes:
+                      type: string
+                      description: ''
+                      example: et
+              required:
+                - document_date
+    delete:
+      summary: 'Remove the specified resource from storage'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Delivery Notes'
+    parameters:
+      -
+        in: path
+        name: deliveryNote_id
+        description: 'The ID of the deliveryNote.'
+        example: eaque
+        required: true
+        schema:
+          type: string
+  /api/v5/shipments/drivers:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Drivers
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Drivers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 45 characters.'
+                  example: virjnxtfeudayseulhip
+              required:
+                - name
+  '/api/v5/shipments/drivers/{driver_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Drivers
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Drivers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 45 characters.'
+                  example: s
+              required:
+                - name
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Drivers
+    parameters:
+      -
+        in: path
+        name: driver_id
+        description: 'The ID of the driver.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/invoices:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Invoices
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Invoices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: ''
+                  example: est
+                number:
+                  type: string
+                  description: ''
+                  example: cupiditate
+                issueDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                deadlineDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                totalAmount:
+                  type: string
+                  description: ''
+                  example: voluptatem
+              required:
+                - customer_id
+                - number
+                - issueDate
+                - deadlineDate
+                - totalAmount
+  '/api/v5/invoices/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Invoices
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Invoices
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: ''
+                  example: null
+                issueDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                deadlineDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Invoices
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the invoice.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/products/measures/import:
+    post:
+      summary: ''
+      operationId: postApiV5ProductsMeasuresImport
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Measures
+  /api/v5/products/measures:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Measures
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Measures
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                singular:
+                  type: string
+                  description: 'Must not be greater than 10 characters.'
+                  example: hawkbmmn
+                plural:
+                  type: string
+                  description: 'Must not be greater than 10 characters.'
+                  example: zztq
+                weightFromProduct:
+                  type: boolean
+                  description: ''
+                  example: true
+                powerFromKg:
+                  type: integer
+                  description: ''
+                  example: 4
+              required:
+                - singular
+                - plural
+  '/api/v5/products/measures/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Measures
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Measures
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                singular:
+                  type: string
+                  description: 'Must not be greater than 10 characters.'
+                  example: bqn
+                plural:
+                  type: string
+                  description: 'Must not be greater than 10 characters.'
+                  example: e
+                weightFromProduct:
+                  type: boolean
+                  description: ''
+                  example: true
+                powerFromKg:
+                  type: integer
+                  description: ''
+                  example: 4
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Measures
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the measure.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/operators/{operatorType}':
+    get:
+      summary: 'Get all operators of a given type'
+      operationId: getAllOperatorsOfAGivenType
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Operators
+    post:
+      summary: 'Create a new operator'
+      operationId: createANewOperator
+      description: ''
+      parameters:
+        -
+          in: query
+          name: username
+          description: ''
+          example: maxime
+          required: true
+          schema:
+            type: string
+            description: ''
+            example: maxime
+        -
+          in: query
+          name: email
+          description: 'Must be a valid email address.'
+          example: dino.mcdermott@example.net
+          required: true
+          schema:
+            type: string
+            description: 'Must be a valid email address.'
+            example: dino.mcdermott@example.net
+        -
+          in: query
+          name: warehouse_id
+          description: ''
+          example: sed
+          required: true
+          schema:
+            type: string
+            description: ''
+            example: sed
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Operators
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: ''
+                  example: ad
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: laurianne.gaylord@example.net
+                warehouse_id:
+                  type: string
+                  description: ''
+                  example: quis
+              required:
+                - username
+                - email
+                - warehouse_id
+    parameters:
+      -
+        in: path
+        name: operatorType
+        description: ''
+        example: warehouse
+        required: true
+        schema:
+          type: string
+  '/api/v5/operators/{operatorType}/{id}':
+    get:
+      summary: 'Get details of a given operator'
+      operationId: getDetailsOfAGivenOperator
+      description: ''
+      parameters:
+        -
+          in: query
+          name: relations
+          description: ''
+          example:
+            - ratione
+          required: false
+          schema:
+            type: array
+            description: ''
+            example:
+              - ratione
+            items:
+              type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Operators
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                relations:
+                  type: array
+                  description: ''
+                  example:
+                    - quo
+                  items:
+                    type: string
+    put:
+      summary: 'Update an operator'
+      operationId: updateAnOperator
+      description: ''
+      parameters:
+        -
+          in: query
+          name: username
+          description: ''
+          example: ratione
+          required: true
+          schema:
+            type: string
+            description: ''
+            example: ratione
+        -
+          in: query
+          name: email
+          description: 'Must be a valid email address.'
+          example: osimonis@example.net
+          required: true
+          schema:
+            type: string
+            description: 'Must be a valid email address.'
+            example: osimonis@example.net
+        -
+          in: query
+          name: warehouse_id
+          description: ''
+          example: eveniet
+          required: true
+          schema:
+            type: string
+            description: ''
+            example: eveniet
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Operators
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: ''
+                  example: quia
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: alta46@example.org
+                warehouse_id:
+                  type: string
+                  description: ''
+                  example: magnam
+              required:
+                - username
+                - email
+                - warehouse_id
+    delete:
+      summary: 'Delete an operator'
+      operationId: deleteAnOperator
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Operators
+    parameters:
+      -
+        in: path
+        name: operatorType
+        description: ''
+        example: warehouse
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the {operatorType}.'
+        example: qui
+        required: true
+        schema:
+          type: string
+  '/api/v5/operators/{operatorType}/{id}/invite':
+    post:
+      summary: 'Send invitation to operator'
+      operationId: sendInvitationToOperator
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Operators
+    parameters:
+      -
+        in: path
+        name: operatorType
+        description: ''
+        example: warehouse
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the {operatorType}.'
+        example: enim
+        required: true
+        schema:
+          type: string
+  '/api/v5/consumptions/{consumption_id}/refresh':
+    post:
+      summary: 'Trigger a new prediction for a consumption'
+      operationId: triggerANewPredictionForAConsumption
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Order Predictions'
+    parameters:
+      -
+        in: path
+        name: consumption_id
+        description: 'The ID of the consumption.'
+        example: 5902c8d8-4288-4f17-9997-93c2ef16c0cf
+        required: true
+        schema:
+          type: string
+  /api/v5/prices/books/import:
+    post:
+      summary: 'Import the price books'
+      operationId: importThePriceBooks
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Price Books'
+  /api/v5/prices/books:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Price Books'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Price Books'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 2 characters.'
+                  example: e
+                name:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 50 characters.'
+                  example: hufacqqgtenrabvoiyu
+              required:
+                - code
+                - name
+  '/api/v5/prices/books/{priceBook_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Price Books'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Price Books'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 2 characters.'
+                  example: ti
+                name:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 50 characters.'
+                  example: dnzskfawmeuqlocek
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Price Books'
+    parameters:
+      -
+        in: path
+        name: priceBook_id
+        description: 'The ID of the priceBook.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/pricing:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Pricing
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Pricing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: quam
+                isFixed:
+                  type: boolean
+                  description: ''
+                  example: true
+                isDiscountable:
+                  type: boolean
+                  description: ''
+                  example: true
+                canBeGift:
+                  type: boolean
+                  description: ''
+                  example: true
+                fixedPrice:
+                  type: number
+                  description: 'This field is required when <code>isFixed</code> is <code>1</code>.'
+                  example: 7.0
+                commission:
+                  type: number
+                  description: 'This field is required when <code>isFixed</code> is <code>1</code>.'
+                  example: 871394.60603549
+                start_at:
+                  type: string
+                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>.'
+                  example: '2081-09-17'
+                product_id:
+                  type: string
+                  description: ''
+                  example: ut
+                price_book_id:
+                  type: string
+                  description: ''
+                  example: exercitationem
+                price_steps:
+                  type: array
+                  description: 'This field is required when <code>isFixed</code> is <code>0</code>.'
+                  example:
+                    - architecto
+                  items:
+                    type: number
+                discount_steps:
+                  type: array
+                  description: ''
+                  example:
+                    - illum
+                  items:
+                    type: number
+              required:
+                - start_at
+                - product_id
+                - price_book_id
+  '/api/v5/pricing/{priceList_id}':
+    put:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Pricing
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                  description: ''
+                  example: 5720862.35761
+                name:
+                  type: string
+                  description: ''
+                  example: eum
+                fixedPrice:
+                  type: number
+                  description: ''
+                  example: 0.2048
+                commission:
+                  type: number
+                  description: ''
+                  example: 3622.973
+                isFixed:
+                  type: boolean
+                  description: ''
+                  example: true
+                isDiscountable:
+                  type: boolean
+                  description: ''
+                  example: true
+                canBeGift:
+                  type: boolean
+                  description: ''
+                  example: false
+                start_at:
+                  type: string
+                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+                  example: '2023-04-16 13:07:23'
+                price_steps:
+                  type: array
+                  description: ''
+                  example:
+                    - sit
+                  items:
+                    type: number
+                discount_steps:
+                  type: array
+                  description: ''
+                  example:
+                    - dolorum
+                  items:
+                    type: number
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Pricing
+    parameters:
+      -
+        in: path
+        name: priceList_id
+        description: 'The ID of the priceList.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/products/attributes/import:
+    post:
+      summary: ''
+      operationId: postApiV5ProductsAttributesImport
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product Attributes'
+  /api/v5/products/attributes:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Product Attributes'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product Attributes'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 50 characters.'
+                  example: bgwawbty
+              required:
+                - name
+  '/api/v5/products/attributes/{attributeName_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Product Attributes'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product Attributes'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 50 characters.'
+                  example: isulundpbncrel
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product Attributes'
+    parameters:
+      -
+        in: path
+        name: attributeName_id
+        description: 'The ID of the attributeName.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/products/categories/import:
+    post:
+      summary: ''
+      operationId: postApiV5ProductsCategoriesImport
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product Categories'
+  /api/v5/products/categories:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Product Categories'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product Categories'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 50 characters.'
+                  example: jbyewibiyiuhzw
+                parent_id:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - name
+  '/api/v5/products/categories/{productCategory_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Product Categories'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product Categories'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 50 characters.'
+                  example: qabhnyzkry
+                parent_id:
+                  type: string
+                  description: ''
+                  example: null
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product Categories'
+    parameters:
+      -
+        in: path
+        name: productCategory_id
+        description: 'The ID of the productCategory.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/products/states/import:
+    post:
+      summary: ''
+      operationId: postApiV5ProductsStatesImport
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product States'
+  /api/v5/products/states:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Product States'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product States'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 45 characters.'
+                  example: 'n'
+                isSellable:
+                  type: boolean
+                  description: ''
+                  example: true
+              required:
+                - name
+  '/api/v5/products/states/{productState_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Product States'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product States'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 45 characters.'
+                  example: byfnvmcetfogcbmki
+                isSellable:
+                  type: boolean
+                  description: ''
+                  example: true
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Product States'
+    parameters:
+      -
+        in: path
+        name: productState_id
+        description: 'The ID of the productState.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/products/{product_id}/production-lots':
+    get:
+      summary: 'Get production lots for a product'
+      operationId: getProductionLotsForAProduct
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Products
+    parameters:
+      -
+        in: path
+        name: product_id
+        description: 'The ID of the product.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/products:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Products
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters.'
+                  example: xrqerhtzvscn
+                product_category_id:
+                  type: integer
+                  description: ''
+                  example: 19
+                measure_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                product_state_id:
+                  type: integer
+                  description: ''
+                  example: 19
+                note:
+                  type: string
+                  description: ''
+                  example: null
+                hiddenNote:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: hpqfh
+                weight:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 43
+                vat_code_id:
+                  type: string
+                  description: ''
+                  example: null
+                attributes:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      attribute_name_id:
+                        type: string
+                        description: ''
+                        example: veniam
+                      value:
+                        type: string
+                        description: ''
+                        example: ut
+                    required:
+                      - attribute_name_id
+                      - value
+                priceLists:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      fixedPrice:
+                        type: number
+                        description: ''
+                        example: 9204959.2653622
+                      isFixed:
+                        type: boolean
+                        description: ''
+                        example: true
+                      isDiscountable:
+                        type: boolean
+                        description: ''
+                        example: true
+                      canBeGift:
+                        type: boolean
+                        description: ''
+                        example: false
+                      price_book_id:
+                        type: integer
+                        description: ''
+                        example: 9
+                    required:
+                      - isFixed
+                      - isDiscountable
+                      - canBeGift
+                      - price_book_id
+                suppliers:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: ''
+                        example: reprehenderit
+                      pivot:
+                        type: object
+                        description: ''
+                        example: []
+                        properties:
+                          supplier_price:
+                            type: number
+                            description: ''
+                            example: 1.70996
+                          note:
+                            type: string
+                            description: ''
+                            example: null
+                    required:
+                      - id
+              required:
+                - name
+                - product_category_id
+                - measure_id
+                - product_state_id
+                - weight
+  '/api/v5/products/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Products
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Products
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters.'
+                  example: xjblmaeappnariznma
+                product_category_id:
+                  type: integer
+                  description: ''
+                  example: 11
+                measure_id:
+                  type: integer
+                  description: ''
+                  example: 8
+                product_state_id:
+                  type: integer
+                  description: ''
+                  example: 18
+                note:
+                  type: string
+                  description: ''
+                  example: null
+                hiddenNote:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: hhskxfhdpavjc
+                weight:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 34
+                vat_code_id:
+                  type: string
+                  description: ''
+                  example: null
+                attributes:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      attribute_name_id:
+                        type: string
+                        description: ''
+                        example: ut
+                      value:
+                        type: string
+                        description: ''
+                        example: culpa
+                    required:
+                      - attribute_name_id
+                      - value
+                priceLists:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      fixedPrice:
+                        type: number
+                        description: ''
+                        example: 30650.11411
+                      isFixed:
+                        type: boolean
+                        description: ''
+                        example: true
+                      isDiscountable:
+                        type: boolean
+                        description: ''
+                        example: true
+                      canBeGift:
+                        type: boolean
+                        description: ''
+                        example: true
+                      price_book_id:
+                        type: integer
+                        description: ''
+                        example: 19
+                    required:
+                      - isFixed
+                      - isDiscountable
+                      - canBeGift
+                      - price_book_id
+                pricingHistory:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: ''
+                        example: et
+                      start_at:
+                        type: string
+                        description: 'Must be a valid date.'
+                        example: '2023-04-16T13:07:18'
+                      end_at:
+                        type: string
+                        description: 'Must be a valid date. Must be a date after <code>priceLists.*.start_at</code>.'
+                        example: '2070-11-30'
+                      fixedPrice:
+                        type: number
+                        description: ''
+                        example: 27646.1859
+                      isFixed:
+                        type: boolean
+                        description: ''
+                        example: false
+                      isDiscountable:
+                        type: boolean
+                        description: ''
+                        example: false
+                      canBeGift:
+                        type: boolean
+                        description: ''
+                        example: false
+                      price_book_id:
+                        type: integer
+                        description: ''
+                        example: 5
+                    required:
+                      - isFixed
+                      - isDiscountable
+                      - canBeGift
+                      - price_book_id
+                suppliers:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: ''
+                        example: suscipit
+                      pivot:
+                        type: object
+                        description: ''
+                        example: []
+                        properties:
+                          supplier_price:
+                            type: number
+                            description: ''
+                            example: 184033258.59692
+                          note:
+                            type: string
+                            description: ''
+                            example: null
+                    required:
+                      - id
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Products
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the product.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/products/{product_id}/lastOrder/{customer_id}':
+    get:
+      summary: 'Get the last order for a customer'
+      operationId: getTheLastOrderForACustomer
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Products
+    parameters:
+      -
+        in: path
+        name: product_id
+        description: 'The ID of the product.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: customer_id
+        description: 'The ID of the customer.'
+        example: neque
+        required: true
+        schema:
+          type: string
+  '/api/v5/products/{product_id}/insights/{customer_id}':
+    get:
+      summary: 'Get insights for a customer'
+      operationId: getInsightsForACustomer
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Products
+    parameters:
+      -
+        in: path
+        name: product_id
+        description: 'The ID of the product.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: customer_id
+        description: 'The ID of the customer.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/purchases/states:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Purchase Order States'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Purchase Order States'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 20 characters.'
+                  example: cekmduabhvptneczz
+                color:
+                  type: string
+                  description: ''
+                  example: dolor
+                textColor:
+                  type: string
+                  description: ''
+                  example: magnam
+                isDefault:
+                  type: boolean
+                  description: ''
+                  example: true
+              required:
+                - name
+                - color
+                - textColor
+  '/api/v5/purchases/states/{purchaseOrderStatus_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Purchase Order States'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Purchase Order States'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 20 characters.'
+                  example: ywbtcsepiqbxda
+                color:
+                  type: string
+                  description: ''
+                  example: vitae
+                textColor:
+                  type: string
+                  description: ''
+                  example: qui
+                isDefault:
+                  type: boolean
+                  description: ''
+                  example: true
+              required:
+                - name
+                - color
+                - textColor
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Purchase Order States'
+    parameters:
+      -
+        in: path
+        name: purchaseOrderStatus_id
+        description: 'The ID of the purchaseOrderStatus.'
+        example: 6
+        required: true
+        schema:
+          type: integer
+  /api/v5/purchases/states/import:
+    post:
+      summary: ''
+      operationId: postApiV5PurchasesStatesImport
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Purchase Orders'
+  /api/v5/purchases/lines:
+    get:
+      summary: ''
+      operationId: getApiV5PurchasesLines
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Purchase Orders'
+  /api/v5/purchases:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Purchase Orders'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Purchase Orders'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderCode:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 20 characters.'
+                  example: roelfopigtp
+                documentNumber:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 20 characters.'
+                  example: xoamsq
+                orderDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                deliveryDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                note:
+                  type: string
+                  description: ''
+                  example: null
+                supplier_id:
+                  type: string
+                  description: ''
+                  example: sunt
+                status_id:
+                  type: string
+                  description: ''
+                  example: null
+                order_lines:
+                  type: array
+                  description: ''
+                  example:
+                    - ut
+                  items:
+                    type: string
+              required:
+                - orderDate
+                - deliveryDate
+                - supplier_id
+                - order_lines
+  '/api/v5/purchases/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Purchase Orders'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Purchase Orders'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderCode:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 20 characters.'
+                  example: erxzvtzioolp
+                documentNumber:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 20 characters.'
+                  example: fofnogkoyytrypoc
+                orderDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                deliveryDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                note:
+                  type: string
+                  description: ''
+                  example: null
+                supplier_id:
+                  type: string
+                  description: ''
+                  example: null
+                status_id:
+                  type: string
+                  description: ''
+                  example: null
+                order_lines:
+                  type: array
+                  description: ''
+                  example:
+                    - neque
+                  items:
+                    type: string
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Purchase Orders'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the purchase.'
+        example: 15
+        required: true
+        schema:
+          type: integer
+  /api/v5/reviews/to-do:
+    get:
+      summary: 'Get all to-do reviews for the current user'
+      operationId: getAllToDoReviewsForTheCurrentUser
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Reviews
+  /api/v5/reviews:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Reviews
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Reviews
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reviewable_type:
+                  type: string
+                  description: 'Must be one of <code>App\Models\Orders\Order</code> or <code>App\Models\Orders\OrderLine</code>.'
+                  example: App\Models\Orders\OrderLine
+                reviewable_id:
+                  type: string
+                  description: ''
+                  example: commodi
+                reviewer_type:
+                  type: string
+                  description: 'Must be one of <code>App\User</code>.'
+                  example: App\User
+                reviewer_id:
+                  type: string
+                  description: ''
+                  example: numquam
+                request:
+                  type: string
+                  description: ''
+                  example: optio
+              required:
+                - reviewable_type
+                - reviewable_id
+                - reviewer_type
+                - reviewer_id
+  '/api/v5/reviews/{review_id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Reviews
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  description: ''
+                  example: eum
+                data:
+                  type: string
+                  description: ''
+                  example: null
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Reviews
+    parameters:
+      -
+        in: path
+        name: review_id
+        description: 'The ID of the review.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  /api/v5/tenant:
+    post:
+      summary: 'Update current tenant info'
+      operationId: updateCurrentTenantInfo
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Settings
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 4 characters. Must not be greater than 255 characters.'
+                  example: eamfserirhcgomcznhgshyxe
+                logo_image:
+                  type: string
+                  format: binary
+                  description: 'Must be a file.'
+              required:
+                - name
+  /api/v5/parameters:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Settings
+  '/api/v5/parameters/{parameter_id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                  description: ''
+                  example: ratione
+              required:
+                - value
+    parameters:
+      -
+        in: path
+        name: parameter_id
+        description: 'The ID of the parameter.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/shipments/states:
+    get:
+      summary: 'Get the shipment states'
+      operationId: getTheShipmentStates
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Shipments
+  '/api/v5/shipments/{shipment_id}/delivery-notes':
+    post:
+      summary: 'Generate the delivery notes for the shipment'
+      operationId: generateTheDeliveryNotesForTheShipment
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Shipments
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                supplier_id:
+                  type: string
+                  description: ''
+                  example: null
+    parameters:
+      -
+        in: path
+        name: shipment_id
+        description: 'The ID of the shipment.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/shipments/{shipment_id}/compute-map':
+    post:
+      summary: 'Compute route for shipment'
+      operationId: computeRouteForShipment
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Shipments
+    parameters:
+      -
+        in: path
+        name: shipment_id
+        description: 'The ID of the shipment.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/shipments/{shipment_id}/generate-route':
+    post:
+      summary: 'Generate the routes for the shipment'
+      operationId: generateTheRoutesForTheShipment
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                destination_ids:
+                  type: object
+                  description: ''
+                  example: []
+                  properties: []
+              required:
+                - destination_ids
+    parameters:
+      -
+        in: path
+        name: shipment_id
+        description: 'The ID of the shipment.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/shipments/{shipment_id}/unload':
+    post:
+      summary: 'Unload the shipment from the warehouse'
+      operationId: unloadTheShipmentFromTheWarehouse
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Shipments
+    delete:
+      summary: 'Undo the shipment unload'
+      operationId: undoTheShipmentUnload
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Shipments
+    parameters:
+      -
+        in: path
+        name: shipment_id
+        description: 'The ID of the shipment.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/shipments:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Shipments
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: alias
+                deliveryDate:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2023-04-16'
+                driver_id:
+                  type: string
+                  description: ''
+                  example: nam
+                shipment_state_id:
+                  type: string
+                  description: ''
+                  example: null
+                warehouse_id:
+                  type: string
+                  description: ''
+                  example: null
+                shipment_lines:
+                  type: array
+                  description: ''
+                  example:
+                    - placeat
+                  items:
+                    type: string
+              required:
+                - deliveryDate
+                - driver_id
+  '/api/v5/shipments/{shipment_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Shipments
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Shipments
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Shipments
+    parameters:
+      -
+        in: path
+        name: shipment_id
+        description: 'The ID of the shipment.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/carriers:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Shipping Carriers'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Shipping Carriers'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 190 characters.'
+                  example: jkbzxxhmtawbdxk
+                drivers:
+                  type: array
+                  description: ''
+                  example:
+                    - accusamus
+                  items:
+                    type: number
+                vehicles:
+                  type: array
+                  description: ''
+                  example:
+                    - eos
+                  items:
+                    type: number
+              required:
+                - name
+  '/api/v5/carriers/{carrier_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Shipping Carriers'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Shipping Carriers'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 190 characters.'
+                  example: wfscsmyuw
+                drivers:
+                  type: array
+                  description: ''
+                  example:
+                    - commodi
+                  items:
+                    type: number
+                vehicles:
+                  type: array
+                  description: ''
+                  example:
+                    - et
+                  items:
+                    type: number
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Shipping Carriers'
+    parameters:
+      -
+        in: path
+        name: carrier_id
+        description: 'The ID of the carrier.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/suppliers:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Paginated list of suppliers'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 57
+                      name: 'Gatti, Conti e Leone SPA'
+                      supplier_code: 221
+                      note: 'Nobis dolores error quo.'
+                      invoicing_heading: null
+                      updated_at: '2023-04-16T11:07:07.000000Z'
+                      created_at: '2023-04-16T11:07:07.000000Z'
+                      logo_url: null
+                    -
+                      id: 58
+                      name: 'Marchetti-Battaglia s.r.l.'
+                      supplier_code: 928
+                      note: 'Et natus nisi vel.'
+                      invoicing_heading: null
+                      updated_at: '2023-04-16T11:07:08.000000Z'
+                      created_at: '2023-04-16T11:07:08.000000Z'
+                      logo_url: null
+                  links:
+                    first: '/?page=1'
+                    last: '/?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: '/?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: /
+                    per_page: 5
+                    to: 2
+                    total: 2
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 57
+                        name: 'Gatti, Conti e Leone SPA'
+                        supplier_code: 221
+                        note: 'Nobis dolores error quo.'
+                        invoicing_heading: null
+                        updated_at: '2023-04-16T11:07:07.000000Z'
+                        created_at: '2023-04-16T11:07:07.000000Z'
+                        logo_url: null
+                      -
+                        id: 58
+                        name: 'Marchetti-Battaglia s.r.l.'
+                        supplier_code: 928
+                        note: 'Et natus nisi vel.'
+                        invoicing_heading: null
+                        updated_at: '2023-04-16T11:07:08.000000Z'
+                        created_at: '2023-04-16T11:07:08.000000Z'
+                        logo_url: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 57
+                        name:
+                          type: string
+                          example: 'Gatti, Conti e Leone SPA'
+                        supplier_code:
+                          type: integer
+                          example: 221
+                        note:
+                          type: string
+                          example: 'Nobis dolores error quo.'
+                        invoicing_heading:
+                          type: string
+                          example: null
+                        updated_at:
+                          type: string
+                          example: '2023-04-16T11:07:07.000000Z'
+                        created_at:
+                          type: string
+                          example: '2023-04-16T11:07:07.000000Z'
+                        logo_url:
+                          type: string
+                          example: null
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: '/?page=1'
+                      last:
+                        type: string
+                        example: '/?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: '/?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: /
+                      per_page:
+                        type: integer
+                        example: 5
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 2
+      tags:
+        - Suppliers
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Suppliers
+  '/api/v5/suppliers/{supplier_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 59
+                  name: 'Cattaneo, Conti e Gallo Group'
+                  supplier_code: 616
+                  note: 'Sed cum dolores id.'
+                  invoicing_heading: null
+                  updated_at: '2023-04-16T11:07:08.000000Z'
+                  created_at: '2023-04-16T11:07:08.000000Z'
+                  logo_url: null
+                properties:
+                  id:
+                    type: integer
+                    example: 59
+                  name:
+                    type: string
+                    example: 'Cattaneo, Conti e Gallo Group'
+                  supplier_code:
+                    type: integer
+                    example: 616
+                  note:
+                    type: string
+                    example: 'Sed cum dolores id.'
+                  invoicing_heading:
+                    type: string
+                    example: null
+                  updated_at:
+                    type: string
+                    example: '2023-04-16T11:07:08.000000Z'
+                  created_at:
+                    type: string
+                    example: '2023-04-16T11:07:08.000000Z'
+                  logo_url:
+                    type: string
+                    example: null
+      tags:
+        - Suppliers
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 12
+                properties:
+                  id:
+                    type: integer
+                    example: 12
+      tags:
+        - Suppliers
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                supplier_code:
+                  type: string
+                  description: ''
+                  example: null
+                name:
+                  type: string
+                  description: 'Must be at least 4 characters.'
+                  example: nvelgodmnxmhgduovteduvpztrhl
+                note:
+                  type: string
+                  description: ''
+                  example: totam
+                invoicing_heading:
+                  type: string
+                  description: ''
+                  example: voluptatum
+                logo_image:
+                  type: string
+                  format: binary
+                  description: 'Must be a file.'
+                warehouses:
+                  type: array
+                  description: ''
+                  example:
+                    - vitae
+                  items:
+                    type: number
+                supplied_products:
+                  type: array
+                  description: ''
+                  example:
+                    - rerum
+                  items:
+                    type: string
+    parameters:
+      -
+        in: path
+        name: supplier_id
+        description: 'The ID of the supplier.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  '/api/v5/suppliers/{supplier}':
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Suppliers
+    parameters:
+      -
+        in: path
+        name: supplier
+        description: 'The supplier.'
+        example: distinctio
+        required: true
+        schema:
+          type: string
+  '/api/v5/users/{user_id}/invite':
+    post:
+      summary: 'Send invitation to user'
+      operationId: sendInvitationToUser
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Users
+    parameters:
+      -
+        in: path
+        name: user_id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/user:
+    get:
+      summary: 'Get current user details'
+      operationId: getCurrentUserDetails
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Warehouse user'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 30
+                  username: renato.leone
+                  email: mbarbieri@example.com
+                  created_at: '2023-04-16T11:07:14.000000Z'
+                  updated_at: '2023-04-16T11:07:14.000000Z'
+                  enabled: true
+                  warehouse_id: 26
+                properties:
+                  id:
+                    type: integer
+                    example: 30
+                  username:
+                    type: string
+                    example: renato.leone
+                  email:
+                    type: string
+                    example: mbarbieri@example.com
+                  created_at:
+                    type: string
+                    example: '2023-04-16T11:07:14.000000Z'
+                  updated_at:
+                    type: string
+                    example: '2023-04-16T11:07:14.000000Z'
+                  enabled:
+                    type: boolean
+                    example: true
+                  warehouse_id:
+                    type: integer
+                    example: 26
+      tags:
+        - Users
+  /api/v5/products/vat-codes/import:
+    post:
+      summary: ''
+      operationId: postApiV5ProductsVatCodesImport
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Vat Codes'
+  /api/v5/products/vat-codes:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Vat Codes'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Vat Codes'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: number
+                  description: ''
+                  example: 4755.0162
+                description:
+                  type: string
+                  description: ''
+                  example: 'Dolor dolor et commodi dolorum beatae sed ullam.'
+                value:
+                  type: number
+                  description: ''
+                  example: 250.0487329
+              required:
+                - code
+                - description
+                - value
+  '/api/v5/products/vat-codes/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Vat Codes'
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Vat Codes'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: number
+                  description: ''
+                  example: 0.5760537
+                description:
+                  type: string
+                  description: ''
+                  example: 'Voluptas ut enim qui.'
+                value:
+                  type: number
+                  description: ''
+                  example: 6431122.0357737
+              required:
+                - code
+                - description
+                - value
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Vat Codes'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the vat code.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/v5/vehicles:
+    get:
+      summary: 'Display a listing of the resource'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Vehicles
+  '/api/v5/vehicles/{vehicle_id}':
+    get:
+      summary: 'Display the specified resource'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Vehicles
+    put:
+      summary: 'Update the specified resource in storage'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Vehicles
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 5 characters.'
+                  example: khoesfksybinlzppurkfojdaetgloindpukakjyqqpmztnhauotydaoeurpzpimxsawhvedbzjvr
+                max_weight:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 0
+                max_distance:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 69
+                cost_per_km:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 31
+                cost_per_hr:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 55
+                unload_time:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 25
+                load_time:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 84
+                max_driving_time_before_pause:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 8
+                min_pause_duration:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 66
+                max_driving_time_per_day:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 49
+                cost_per_extra_day:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 22
+                max_speed:
+                  type: number
+                  description: 'Must be at least 0.'
+                  example: 41
+    parameters:
+      -
+        in: path
+        name: vehicle_id
+        description: 'The ID of the vehicle.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v5/warehouses:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Warehouses
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Warehouses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                warehouse_code:
+                  type: string
+                  description: ''
+                  example: null
+                name:
+                  type: string
+                  description: 'Must be at least 4 characters.'
+                  example: gurqepqsytsqvfszpciiqrjt
+                note:
+                  type: string
+                  description: ''
+                  example: sunt
+                supplier_id:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - name
+  '/api/v5/warehouses/{warehouse_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Warehouses
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Warehouses
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                warehouse_code:
+                  type: string
+                  description: ''
+                  example: null
+                name:
+                  type: string
+                  description: 'Must be at least 4 characters.'
+                  example: zmzzofakbxbse
+                note:
+                  type: string
+                  description: ''
+                  example: fugiat
+                supplier_id:
+                  type: string
+                  description: ''
+                  example: null
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Warehouses
+    parameters:
+      -
+        in: path
+        name: warehouse_id
+        description: 'The ID of the warehouse.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/warehouses/{warehouse_id}/movements':
+    get:
+      summary: 'Get the warehouse movements.'
+      operationId: getTheWarehouseMovements
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Warehouses
+    parameters:
+      -
+        in: path
+        name: warehouse_id
+        description: 'The ID of the warehouse.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/warehouses/{warehouse_id}/production-lots':
+    get:
+      summary: 'Get the production lots.'
+      operationId: getTheProductionLots
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Warehouses
+    parameters:
+      -
+        in: path
+        name: warehouse_id
+        description: 'The ID of the warehouse.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/warehouses/{warehouse_id}/inventories':
+    get:
+      summary: 'Get the inventory list.'
+      operationId: getTheInventoryList
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Warehouses
+    parameters:
+      -
+        in: path
+        name: warehouse_id
+        description: 'The ID of the warehouse.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/warehouses/{warehouse_id}/inventories/import':
+    post:
+      summary: 'Import the inventory.'
+      operationId: importTheInventory
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Warehouses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: doloremque
+                replace_all:
+                  type: boolean
+                  description: ''
+                  example: false
+                items:
+                  type: array
+                  description: ''
+                  example:
+                    - culpa
+                  items:
+                    type: string
+              required:
+                - name
+    parameters:
+      -
+        in: path
+        name: warehouse_id
+        description: 'The ID of the warehouse.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v5/warehouses/{warehouse_id}/inventories/{inventory_id}':
+    delete:
+      summary: 'Delete an inventory.'
+      operationId: deleteAnInventory
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Warehouses
+    parameters:
+      -
+        in: path
+        name: warehouse_id
+        description: 'The ID of the warehouse.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: inventory_id
+        description: 'The ID of the inventory.'
+        example: 11
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Agents
+    description: ''
+  -
+    name: 'Customer Order States'
+    description: ''
+  -
+    name: 'Customer Orders'
+    description: ''
+  -
+    name: 'Customer Production Chains'
+    description: ''
+  -
+    name: Customers
+    description: ''
+  -
+    name: 'Delivery Notes'
+    description: ''
+  -
+    name: Drivers
+    description: ''
+  -
+    name: Invoices
+    description: ''
+  -
+    name: Measures
+    description: ''
+  -
+    name: Operators
+    description: ''
+  -
+    name: 'Order Predictions'
+    description: ''
+  -
+    name: 'Price Books'
+    description: ''
+  -
+    name: Pricing
+    description: ''
+  -
+    name: 'Product Attributes'
+    description: ''
+  -
+    name: 'Product Categories'
+    description: ''
+  -
+    name: 'Product States'
+    description: ''
+  -
+    name: Products
+    description: ''
+  -
+    name: 'Purchase Order States'
+    description: ''
+  -
+    name: 'Purchase Orders'
+    description: ''
+  -
+    name: Reviews
+    description: ''
+  -
+    name: Settings
+    description: ''
+  -
+    name: Shipments
+    description: ''
+  -
+    name: 'Shipping Carriers'
+    description: ''
+  -
+    name: Suppliers
+    description: ''
+  -
+    name: Users
+    description: ''
+  -
+    name: 'Vat Codes'
+    description: ''
+  -
+    name: Vehicles
+    description: ''
+  -
+    name: Warehouses
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []
